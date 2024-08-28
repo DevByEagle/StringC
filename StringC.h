@@ -13,17 +13,17 @@ typedef struct {
 	size_t length;
 } StringC;
 
-StringC CreateString(const char* initial);
+StringC strcreat(const char* initial);
 StringC substring(const StringC* str, size_t start, size_t length);
 int cmpstr(const StringC *str1, const StringC *str2);
-void TypeLine(const StringC* message);
+void prtstr(const StringC* message);
 void join(StringC* str, const char* additional);
 void strfree(StringC* str);
 
 #endif
 
 #ifdef STRINGC_IMPLEMENTATION
-tringC CreateString(const char* initial) {
+tringC strcreat(const char* initial) {
 	StringC str;
 	if (initial) {
         str.length = strlen(initial);
@@ -78,7 +78,7 @@ StringC substring(const StringC* str, size_t start, size_t length) {
     return sub;
 }
 
-bool TypeLine(const StringC *message) {
+bool prtstr(const StringC *message) {
     if (!message) {
         fprintf(stderr, "[%s] Missing Pramiter\n", "ERROR");
         return false;
