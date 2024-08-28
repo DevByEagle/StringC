@@ -78,12 +78,12 @@ StringC substring(const StringC* str, size_t start, size_t length) {
     return sub;
 }
 
-bool prtstr(const StringC *message) {
+bool prtstr(const StringC *str) {
     if (!message) {
-        fprintf(stderr, "[%s] Missing Pramiter\n", "ERROR");
+        fprintf(stderr, "[ERROR] Missing Pramiter\n");
         return false;
     } else {
-        printf("%s\n", message->data);
+        printf("%s\n", str->data);
         return true;
     }
 }
