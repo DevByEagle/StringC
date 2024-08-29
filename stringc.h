@@ -6,11 +6,14 @@
 #include <stdbool.h>
 #include <string.h>
 
+#define String_Args "%s\n"
+
 typedef struct {
     char* data;
     size_t length;
 } StringC;
 
+/** @brief Create a new String */ 
 StringC CreateString(const char* initial) {
     StringC str;
     if (initial) {
@@ -30,6 +33,7 @@ StringC CreateString(const char* initial) {
     return str;
 }
 
+/** @brief Joins two string together */
 void join(StringC* str, const char* additional) {
     if (additional) {
         size_t additional_length = strlen(additional);
@@ -67,6 +71,7 @@ StringC substring(const StringC* str, size_t start, size_t length) {
     return sub;
 }
 
+/** @brief Prints the string */
 bool ptrstr(const StringC* str) {
     if (!str) {
         fprintf(stderr, "[ERROR] Missing Pramiter\n");
@@ -77,6 +82,12 @@ bool ptrstr(const StringC* str) {
     }
 }
 
+/** @brief Get the size of the string */
+size_t size(StringC* str) {
+    return str->length;
+}
+
+/** @brief Free the string */
 void freestr(StringC* str) {
     free(str->data);
     str->data = NULL;
