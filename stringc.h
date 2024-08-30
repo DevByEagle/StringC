@@ -8,13 +8,14 @@
 
 #define String_Args "%s\n"
 
-typedef struct {
+/** @brief StringC is a fast, lightweight C/C++ library for efficient string manipulation, offering core functions like concatenation, formatting, and searching, designed for cross-platform use. */
+typedef struct _stringc {
     char* data;
     size_t length;
 } StringC;
 
-/** @brief Create a new String */ 
-StringC CreateString(const char* initial) {
+/** @brief strinit initializes and returns a new string, allocating memory and setting the content to a specified value. */
+StringC strinit(const char* initial) {
     StringC str;
     if (initial) {
         str.length = strlen(initial);
@@ -33,7 +34,7 @@ StringC CreateString(const char* initial) {
     return str;
 }
 
-/** @brief Joins two string together */
+/** @brief `join` concatenates an array of strings into a single string, separated by a specified delimiter. Ideal for combining multiple text elements efficiently. */
 void join(StringC* str, const char* additional) {
     if (additional) {
         size_t additional_length = strlen(additional);
@@ -44,11 +45,12 @@ void join(StringC* str, const char* additional) {
         }
     }
 }
-
+/** @brief cmpstr compares two strings lexicographically. Returns 0 if they are equal, a negative value if the first string is less than the second, or a positive value if it is greater. */
 int cmpstr(const StringC* str1, const StringC* str2) {
     return strcmp(str1->data, str2->data);
 }
 
+/** @brief substring extracts a portion of a string based on specified start and end indices. It efficiently handles string slicing for both C and C++ applications. */
 StringC substring(const StringC* str, size_t start, size_t length) {
     StringC sub;
     if (start < str->length) {
@@ -71,7 +73,7 @@ StringC substring(const StringC* str, size_t start, size_t length) {
     return sub;
 }
 
-/** @brief Prints the string */
+/** @brief `ptrstr`: Prints the string pointed to by a given pointer. Efficiently handles null-terminated strings, ensuring proper output and formatting. */
 bool ptrstr(const StringC* str) {
     if (!str) {
         fprintf(stderr, "[ERROR] Missing Pramiter\n");
@@ -82,12 +84,12 @@ bool ptrstr(const StringC* str) {
     }
 }
 
-/** @brief Get the size of the string */
+/** @brief `size`: Returns the length of the string, excluding the null terminator. */
 size_t size(StringC* str) {
     return str->length;
 }
 
-/** @brief Free the string */
+/** @brief `freestr`: Frees the memory allocated for a string created with StringLib, ensuring proper resource management and preventing memory leaks. */
 void freestr(StringC* str) {
     free(str->data);
     str->data = NULL;
