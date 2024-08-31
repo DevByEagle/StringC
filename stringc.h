@@ -19,12 +19,12 @@ StringC strinit(const char* initial) {
     StringC str;
     if (initial) {
         str.length = strlen(initial);
-        str.data = malloc(str.length + 1);
+        str.data = (char*)malloc(str.length + 1);
         if (str.data) {
             strcpy(str.data, initial);
         } else {
             str.length = 0;
-            str.data = malloc(1); // Allocate space for the null terminator
+            str.data = (char*)malloc(1); // Allocate space for the null terminator
             if (str.data) {
                 str.data[0] = '\0';
             }
@@ -38,7 +38,7 @@ StringC strinit(const char* initial) {
 void join(StringC* str, const char* additional) {
     if (additional) {
         size_t additional_length = strlen(additional);
-        str->data = realloc(str->data, str->length + additional_length + 1);
+        str->data = (char*)realloc(str->data, str->length + additional_length + 1);
         if (str->data) {
             strcat(str->data, additional);
             str->length += additional_length;
@@ -58,14 +58,14 @@ StringC substring(const StringC* str, size_t start, size_t length) {
         if (start + length > str->length) {
             sub.length = str->length - start;
         }
-        sub.data = malloc(sub.length + 1);
+        sub.data = (char*)malloc(sub.length + 1);
         if (sub.data) {
             strncpy(sub.data, str->data + start, sub.length);
             sub.data[sub.length] = '\0';
         }
     } else {
         sub.length = 0;
-        sub.data = malloc(1); // empty string
+        sub.data = (char*)malloc(1); // empty string
         if (sub.data) {
             sub.data[0] = '\0';
         }
@@ -76,10 +76,10 @@ StringC substring(const StringC* str, size_t start, size_t length) {
 /** @brief `ptrstr`: Prints the string pointed to by a given pointer. Efficiently handles null-terminated strings, ensuring proper output and formatting. */
 bool ptrstr(const StringC* str) {
     if (!str) {
-        fprintf(stderr, "[ERROR] Missing Pramiter\n");
+        fprintf(stderr, "[ERROR] Missing Perimeter\n");
         return false;
     } else {
-        printf("%s\n", str->data);
+        printf(String_Args, str->data);
         return true;
     }
 }
