@@ -44,8 +44,6 @@ StringC strinit(const char* initial);
 void join(StringC* str, const char* additional);
 /** @brief cmpstr compares two strings lexicographically. Returns 0 if they are equal, a negative value if the first string is less than the second, or a positive value if it is greater. */
 int cmpstr(const StringC* str1, const StringC* str2);
-/** @brief substring extracts a portion of a string based on specified start and end indices. It efficiently handles string slicing for both C and C++ applications. */
-StringC substring(const StringC* str, size_t start, size_t length);
 /** @brief `ptrstr`: Prints the string pointed to by a given pointer. Efficiently handles null-terminated strings, ensuring proper output and formatting. */
 bool ptrstr(const StringC* str);
 /** @brief `size`: Returns the length of the string, excluding the null terminator. */
