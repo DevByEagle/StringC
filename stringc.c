@@ -35,29 +35,6 @@ int cmpstr(const StringC* str1, const StringC* str2) {
     return strcmp(str1->data, str2->data);
 }
 
-StringC substring(const StringC* str, size_t start, size_t length) {
-    StringC sub;
-    if (start < str->length) {
-        sub.length = length;
-        if (start + length > str->length) {
-            sub.length = str->length - start;
-        }
-        sub.data = (char*)malloc(sub.length + 1);
-        if (sub.data) {
-            strncpy(sub.data, str->data + start, sub.length);
-            sub.data[sub.length] = '\0';
-        }
-    }
-    else {
-        sub.length = 0;
-        sub.data = (char*)malloc(1); // empty string
-        if (sub.data) {
-            sub.data[0] = '\0';
-        }
-    }
-    return sub;
-}
-
 bool ptrstr(const StringC* str) {
     if (!str) {
         fprintf(stderr, "[ERROR] No data provided");
